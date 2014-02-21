@@ -1,0 +1,80 @@
+package de.tudarmstadt.gdi1.project;
+
+import java.util.*;
+
+import de.tudarmstadt.gdi1.project.alphabet.Alphabet;
+import de.tudarmstadt.gdi1.project.alphabet.Dictionary;
+
+/**
+ * 
+ * @author Janik
+ *
+ */
+public class DictionaryC implements Dictionary{
+	
+	HashSet<String> dictionarybook= new HashSet<String>();
+	Alphabet alphabet;
+	
+	public DictionaryC(de.tudarmstadt.gdi1.project.Alphabet source, String text){
+		
+		this.alphabet = source;
+		char[] breaks = new char[] {',' , '.' , '!' , '?' , ' '};
+		String word = "";
+		boolean allowed;
+		char actchar;
+		char actbreak;
+		
+		for(int i=0; i<text.length(); i++){
+			allowed = true;
+			actchar = text.charAt(i);
+			for(int b = 0; b<breaks.length; b++){
+				actbreak = breaks[b];
+				if(actchar == actbreak){
+					allowed = false;
+					if(source.allows(word)){
+						dictionarybook.add(word);
+					}
+					word = "";
+				}
+			}
+			if ( allowed) word = word + text.charAt(i);
+		}
+	}
+
+	@Override
+	public Iterator<String> iterator() {
+		return dictionarybook.iterator();
+	}
+
+	@Override
+	public boolean contains(String word) {
+		boolean contains = false;
+		for(int i = 0 ; i < this.size() ; i++){
+			if ( this.get(i) == word){
+				contains = true;
+			}
+		}
+		return contains;
+	}
+
+	@Override
+	public Alphabet getAlphabet() {
+		return alphabet;
+	}
+
+	@Override
+	public int size() {
+
+		return dictionarybook.size();
+	}
+
+	@Override
+	public String get(int index) {
+
+		return dictionarybook.toArray()[index].toString();
+	}
+
+
+
+
+}

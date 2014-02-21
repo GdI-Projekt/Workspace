@@ -1,0 +1,17 @@
+package de.tudarmstadt.gdi1.project.analysis;
+
+public class CaesarCryptanalysis implements de.tudarmstadt.gdi1.project.analysis.caesar.CaesarCryptanalysis {
+
+	/**
+	 * @param cipher der bekannte Ciphertext
+	 * @param d Distribution
+	 */
+	@Override
+	public void knownCiphertextAttack(String cipher, Distribution d) {
+		
+		
+	}
+	
+	
+
+}

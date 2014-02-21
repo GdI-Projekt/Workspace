@@ -1,0 +1,65 @@
+package de.tudarmstadt.gdi1.project.eigeneTests;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+import de.tudarmstadt.gdi1.project.KeywordMonoalphabetic;
+
+/**
+ * Testet die Klasse KeywordMonoalphabetic.
+ * @author Laura
+ *
+ */
+public class KeywordMonoalphabeticTest {
+
+	Alphabet apfel;
+	Alphabet salz;
+	
+	Alphabet standardAlphabet = new Alphabet();
+	String pw1 = "apfel";
+	String pw2 = "salzstange";
+	
+	KeywordMonoalphabetic keyMonoApfel = new KeywordMonoalphabetic(standardAlphabet, pw1);
+	KeywordMonoalphabetic keyMonoSalz = new KeywordMonoalphabetic(standardAlphabet, pw2);
+	KeywordMonoalphabetic noKey = new KeywordMonoalphabetic(standardAlphabet, "");
+	
+	char[] apfelArr = {'a', 'p', 'f', 'e', 'l', 'z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 
+			'o', 'n', 'm', 'k', 'j', 'i', 'h', 'g', 'd', 'c', 'b'};
+	char[] salzArr = {'s', 'a', 'l', 'z', 't', 'n', 'g', 'e', 'y', 'x', 'w', 'v', 'u', 'r', 'q', 
+			'p', 'o', 'm', 'k', 'j', 'i', 'h', 'f', 'd', 'c', 'b'};
+	
+	ArrayList<Character> apfelAlpha = new ArrayList<>();
+	ArrayList<Character> salzAlpha = new ArrayList<>();
+	Alphabet noKeyAlpha = new Alphabet();
+	
+@Before
+public void basis() {
+	noKeyAlpha = (Alphabet) noKeyAlpha.reverseAlphabet(noKeyAlpha);
+	
+	for (int i = 0; i < apfelArr.length; i++) {
+		apfelAlpha.add(apfelArr[i]);
+		salzAlpha.add(salzArr[i]);
+	}
+	
+	apfel = new Alphabet(apfelAlpha);
+	salz = new Alphabet(salzAlpha);
+}
+
+@Test
+public void keyGenerationTest() {
+	
+	System.out.println(keyMonoSalz.toString());
+	System.out.println(keyMonoApfel.toString());
+	System.out.println(noKey.toString());
+	
+	assertArrayEquals(salz.asCharArray(), keyMonoSalz.getKey().asCharArray());
+	assertArrayEquals(apfel.asCharArray(), keyMonoApfel.getKey().asCharArray());
+	assertArrayEquals(noKeyAlpha.asCharArray(), noKey.getKey().asCharArray());
+}
+
+}

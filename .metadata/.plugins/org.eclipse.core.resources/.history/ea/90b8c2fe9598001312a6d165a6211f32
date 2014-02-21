@@ -1,0 +1,57 @@
+package de.tudarmstadt.gdi1.project;
+
+import java.util.Iterator;
+
+import de.tudarmstadt.gdi1.project.alphabet.Alphabet;
+import de.tudarmstadt.gdi1.project.alphabet.Dictionary;
+
+public class DictionaryC implements Dictionary{
+	
+	
+	
+	public DictionaryC(Alphabet source, String text){
+		
+		char[] breaks = new char[] {',' , '.' , '!' , '?' , ' '};
+		String word = "";
+		
+		for(int i=0; i<text.length(); i++){
+			for(int b = 0; b<breaks.length; b++){
+				if(text.charAt(i) == breaks[b]){
+					
+				}
+			}
+		}
+	}
+
+	@Override
+	public Iterator<String> iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean contains(String word) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Alphabet getAlphabet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String get(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

@@ -1,0 +1,15 @@
+package de.tudarmstadt.gdi1.project.alphabet;
+
+import java.util.*;
+
+/**
+ * 
+ * @author Janik
+ *
+ */
+public interface Distribution {
+	public double getFrequency(String letter);
+	public List<String> getSorted(int length);
+	
+
+}

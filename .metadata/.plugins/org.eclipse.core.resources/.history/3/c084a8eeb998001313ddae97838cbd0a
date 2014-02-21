@@ -1,0 +1,66 @@
+package de.tudarmstadt.gdi1.project.eigeneTests;
+
+import static org.junit.Assert.*;
+
+import java.util.LinkedList;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+import de.tudarmstadt.gdi1.project.exception.InvalidCharacterException;
+
+public class AlphabetTests {
+	LinkedList<Character> alph1 = new LinkedList<Character>();
+	Alphabet alphabet1;
+	Alphabet alphabet2;
+	@Before
+	public void init(){
+		alph1.add('h');
+		alph1.add('a');
+		alph1.add('l');
+		alph1.add('o');
+		//alphabet2 = new Alphabet(); 
+	}
+	
+	/**
+	 * Testet ob wenn ein Alphabet mit 2 gleichen Buchstaben erstellt wird
+	 * eine Exception geworfen wird
+	 */
+	@Test(expected = Exception.class) 
+	public void testAlphabetWithSameEntry(){
+		alph1.add('h');
+		@SuppressWarnings("unused")
+		Alphabet invalid = new Alphabet(alph1);
+	}
+	/**
+	 * Testet ob ein neues Alphabet erstellt werden kann
+	 */
+	@Test
+	public void testCreate(){
+		@SuppressWarnings("unused")
+		Alphabet valid = new Alphabet(alph1);
+	}
+	
+	/**
+	 * Testet asCharArray
+	 */
+	@Test
+	public void testAsCharArray(){
+		char[] alphArray =  alph1.toString().toCharArray();
+		alphabet1 = new Alphabet(alph1);
+		assertEquals(alphArray, alphabet1.asCharArray());
+	}
+	
+	/**
+	 * Testet checkAlphabet
+	 */
+	//@Test
+	//public void testCheckAlphabet(){
+	
+	//}
+
+	
+	
+
+}

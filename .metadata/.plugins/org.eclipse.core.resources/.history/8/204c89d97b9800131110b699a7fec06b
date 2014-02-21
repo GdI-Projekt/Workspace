@@ -1,0 +1,241 @@
+package de.tudarmstadt.gdi1.project;
+import java.util.*;
+
+import de.tudarmstadt.gdi1.project.utils.*;
+
+import de.tudarmstadt.gdi1.project.exception.*;
+
+/**
+ * Repräsentiert ein Alphabet.
+ * @author Laura
+ *
+ */
+public class Alphabet implements Iterable<Character>, de.tudarmstadt.gdi1.project.alphabet.Alphabet,
+Utils {
+
+	Set<Character> alphabet;
+	
+	/**
+	 * Erzeugt ein Alphabet.	
+	 * @param alphabet das Alphabet
+	 */
+	public Alphabet(Collection<Character> alphabet) 
+		{
+			createAlphabet(alphabet);
+		}
+
+	/**
+	 * Erzeugt das Standard-Alphabet von a bis z.
+	 */
+	public Alphabet() {
+		char[] abc = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+		for (int i = 0; i < abc.length; i++) {
+			alphabet.add(abc[i]);
+		}
+	}
+	
+	public char[] asCharArray() {
+		return alphabet.toString().toCharArray();
+	}
+
+		/**
+		 * Setzt das aktuelle Alphabet auf das übergebene Alphabet.
+		 * @param alphabet ein übergebenes Alphabet
+		 * @throws DoppelterBuchstabeException Fehler bei doppeltem Buchstaben im Array
+		 */
+		public void createAlphabet(Collection<Character> alphabet) {
+			try { 	if (this.alphabet.addAll(alphabet) == true) 
+						this.alphabet.addAll(alphabet); 
+					else throw new InvalidCharacterException(); 
+			}
+			
+			catch(InvalidCharacterException dbe) { //gibt Fehlermeldung aus
+				System.out.println("Illegales Alphabet: Doppelte Buchstaben enthalten!");
+				this.alphabet = null;
+			}
+				
+		}
+		
+		/**
+		 * Überprüft das gegebene Alphabet auf doppelte Buchstaben.
+		 * @param alphabet ein gegebenes Alphabet
+		 * @return true, falls es korrekt ist, false wenn nicht
+		 */
+		public boolean checkAlphabet(char[] alphabet) {
+			char[] hilf = new char[alphabet.length]; //"Hilfsalphabet", das die bereits 
+			//vorgekommenen Buchstaben enthält
+			
+			for (int i = 0; i < alphabet.length; i++) {
+				
+				for (int j = 0; j < i; j++) {
+					if (alphabet[i] == hilf[j]) return false; //durchsucht das bestehende 
+					//Hilfsarray nach dem aktuellen Buchstaben im Alphabetarray und wenn es 
+					//vorkommt, bricht er sofort ab und returnt false
+				}
+				hilf[i] = alphabet[i]; //wenn der aktuelle Buchstabe nicht vorkam, wird dieser 
+				//an die Stelle im Hilfsarray eingefügt
+			}
+			
+			return true; //wenn alles glattlief, wird true ausgegeben (d.h. es kamen keine
+			//doppelten Buchstaben vor)
+		}
+		
+		/**
+		 * Überprüft an welcher Stelle sich der Buchstabe im Alphabet befindet und gibt den Index zurück
+		 * falls der Buchstabe nicht enthalten ist wird eine Exception geworfen
+		 * @param letter Buchstabe, dessen Index gesucht ist
+		 * @return Index des Buchstabens
+		 */
+		public int getIndex(char letter){
+			try{
+				char[] tempAlph = this.asCharArray();
+				for(int i=0; i<tempAlph.length; i++){
+					if (tempAlph[i] == letter) return i;
+				}
+				throw new ArrayIndexOutOfBoundsException();
+			}
+			catch(ArrayIndexOutOfBoundsException e){
+				System.out.println("Illegaler Array-Zugriff Buchstabe nicht entahlten");
+			}
+			
+			finally{
+				return -1;
+			}
+		}
+		
+		/**
+		 * Liefert den Buchstaben zum Index.
+		 * @param index ein gegebener Index
+		 * @return der zum Index passende Buchstabe
+		 */
+		public char getChar(int index) {
+			return this.asCharArray()[index];
+		}
+		
+		/**
+		 * Gibt Größe des Alphabets zurück.
+		 * @return Größe des Alphabets
+		 */
+		public int size() {
+			return this.asCharArray().length;
+		}
+		
+		/**
+		 * Überprüft, ob gegebener Character im Alphabet enthalten ist.
+		 * @param chr zu prüfender Buchstabe
+		 * @return true, falls der Buchstabe enthalten ist, andernfalls false
+		 */
+		public boolean contains(char chr) {
+			char[] tempAlph = this.asCharArray();	
+			for (int i = 0; i < tempAlph.length; i++) {
+						if (tempAlph[i] == chr) return true; 
+					}
+			
+			return false; 
+		}
+		
+		/**
+		 * Überprüft, ob ein gegebenes Wort nur Buchstaben enthält, die im Alphabet enthalten
+		 * sind.
+		 * @param word ein zu prüfendes Wort
+		 * @return true, falls das Wort legal ist, andernfalls false
+		 */
+		public boolean allows(String word) {
+			char[] wordArray = word.toCharArray();
+			for (int i = 0; i < wordArray.length; i++) {
+				if (contains(wordArray[i]) == true) return false;
+			}
+			return true;
+		}
+		
+		/**
+		 * Löscht alle Buchstaben aus einem gegebenen String, die nicht Teil des Alphabets
+		 * sind.
+		 * @param ein gegebener String
+		 */
+		public String normalize(String input) {
+			if (allows(input) == true) return input;
+			else {
+				char[] inputArray = input.toCharArray();
+				StringBuilder result = new StringBuilder(inputArray.length);
+				for (int i = 0; i < inputArray.length; i++) {
+					if (contains(inputArray[i]) == true) result.append(inputArray[i]);
+				}
+				return result.toString();
+			}
+		}
+
+		@Override
+		public Iterator<Character> iterator() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public String toDisplay(String ciphertext) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Map<Integer, List<String>> ngramize(String text, int... lengths) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public de.tudarmstadt.gdi1.project.alphabet.Alphabet shiftAlphabet(
+				de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet,
+				int shift) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public de.tudarmstadt.gdi1.project.alphabet.Alphabet reverseAlphabet(
+				de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public boolean containsSameCharacters(
+				de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet1,
+				de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet2) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public de.tudarmstadt.gdi1.project.alphabet.Alphabet randomizeAlphabet(
+				de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet) {
+			Random random = new Random();
+			char[] rAlphabet = new char[alphabet.asCharArray().length];
+			
+			int[] indicesUsed = new int[alphabet.asCharArray().length];
+			int count = 0;
+			Set<Character> tempSet = new HashSet<>();
+			
+			while (count < alphabet.asCharArray().length) {
+				int actualRandom = random.nextInt(26);
+				boolean used = false;
+				for (int i = 0; i < count; i++) {
+					if (indicesUsed[i] == actualRandom) used = true;
+				}
+				if (used == false) break;
+				rAlphabet[count] = getChar(actualRandom);
+				indicesUsed[count] = actualRandom;
+				tempSet.add(rAlphabet[count]);
+				count++;
+			}
+			
+			Alphabet newAlphabet = new Alphabet(tempSet);
+			alphabet = newAlphabet;
+			return this;
+		}
+		
+		
+		
+		
+	
+}

@@ -1,0 +1,5 @@
+package de.tudarmstadt.gdi1.project.analysis;
+
+public interface KnownCiphertextAnalysis {
+
+}

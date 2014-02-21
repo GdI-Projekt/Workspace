@@ -1,0 +1,12 @@
+package de.tudarmstadt.gdi1.project;
+
+/**
+ * Repräsentiert einen Angreifer auf eine monoalphabetische Verschlüsselung, wobei der 
+ * Angreifer sowohl Klar- als auch Chiffretext besitzt und sich sogar beliebige Klar- und
+ * dazugehörige Chiffretexte aussuchen darf.
+ * @author Laura
+ *
+ */
+public class MonoalphabeticCpaNpaCryptanalysis {
+
+}

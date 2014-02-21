@@ -1,0 +1,33 @@
+package de.tudarmstadt.gdi1.project.eigeneTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+import de.tudarmstadt.gdi1.project.CaesarAnalysis;
+import de.tudarmstadt.gdi1.project.DistributionC;
+
+
+public class CaesarAnalysisTest {
+	Alphabet abc = new Alphabet();
+	String text = "die gedanken sind frei, keiner kann sie erraten sie fliehen vorbei wie n‰chtliche schatten, kein mensch kann sie wissen, kein j‰ger sie schieﬂen mit pulver und blei die gedanken sind frei";
+	
+	DistributionC d = new DistributionC(abc, text, 3);
+	CaesarAnalysis c = new CaesarAnalysis();
+	String ciphertext1 = "gqzrjs nr lfwyjs xt ebfsenl fwyjs ats wtxjs yzqujs zsi sfwenxxjs qjnxyjs xnhm mjzyj inj pqjnsxyjs, ifx bnqq nhm fqqjx lfw snhmy bnxxjs";
+	String ciphertext2 = "vfogyh cg aulnyh mi tquhtca ulnyh pih limyh nofjyh ohx hultcmmyh fycmnyh mcwb byony xcy efychmnyh, xum qcff cwb uffym aul hcwbn qcmmyh";
+	@Test
+	public void testKnownCiphertextAttack() {
+	//	int key1 = c.knownCiphertextAttack(ciphertext1, d);
+		int key2 = c.knownCiphertextAttack(ciphertext2, d);
+	//	assertEquals(5, key1);
+		assertEquals(20, key2);
+	}
+	
+	@Test
+	public void testKnownPlaintextAttack(){
+		
+	}
+
+}

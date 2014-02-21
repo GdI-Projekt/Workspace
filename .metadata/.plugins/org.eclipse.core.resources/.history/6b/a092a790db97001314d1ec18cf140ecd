@@ -1,0 +1,74 @@
+package de.tudarmstadt.gdi1.project;
+
+import de.tudarmstadt.gdi1.project.alphabet.Alphabet;
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.Monoalphabetic;
+import de.tudarmstadt.gdi1.project.DoppelterBuchstabeException;
+import de.tudarmstadt.gdi1.project.analysis.*;
+
+
+public class FactoryIM implements Factory, Alphabet {
+	
+	char[] alphabet; //das aktuelle Alphabet
+	
+	/**
+	 * Setzt das aktuelle Alphabet auf das übergebene Alphabet.
+	 * @param alphabet ein übergebenes Alphabet
+	 * @throws DoppelterBuchstabeException Fehler bei doppeltem Buchstaben im Array
+	 */
+	public void createAlphabet(char[] alphabet) {
+		try { 	if (checkAlphabet(alphabet)==true) this.alphabet = alphabet; //setzt das 
+				//aktuelle Alphabet auf das gegebene Alphabet bei Korrektheit
+		
+				else throw new DoppelterBuchstabeException(); } //wirft Exception bei 
+				//fehlerhaftem Alphabet
+		
+		catch(DoppelterBuchstabeException dbe) { //gibt Fehlermeldung aus
+			System.out.println("Illegales Alphabet: Doppelte Buchstaben enthalten!");
+			this.alphabet = null;
+		}
+			
+	}
+	
+	/**
+	 * Überprüft das gegebene Alphabet auf doppelte Buchstaben.
+	 * @param alphabet ein gegebenes Alphabet
+	 * @return true, falls es korrekt ist, false wenn nicht
+	 */
+	public boolean checkAlphabet(char[] alphabet) {
+		char[] hilf = new char[alphabet.length]; //"Hilfsalphabet", das die bereits 
+		//vorgekommenen Buchstaben enthält
+		
+		for (int i = 0; i < alphabet.length; i++) {
+			
+			for (int j = 0; j < i; j++) {
+				if (alphabet[i] == hilf[j]) return false; //durchsucht das bestehende 
+				//Hilfsarray nach dem aktuellen Buchstaben im Alphabetarray und wenn es 
+				//vorkommt, bricht er sofort ab und returnt false
+			}
+			hilf[i] = alphabet[i]; //wenn der aktuelle Buchstabe nicht vorkam, wird dieser 
+			//an die Stelle im Hilfsarray eingefügt
+		}
+		
+		return true; //wenn alles glattlief, wird true ausgegeben (d.h. es kamen keine
+		//doppelten Buchstaben vor)
+	}
+	
+ 
+	@Override
+	public Monoalphabetic getMonoalphabetic(Alphabet key, String text){
+		Monoalphabetic m = null; //new Monoalphabetic(key, text) - Geht nicht, abstrakte Klasse
+		return m;
+	}
+	
+
+	public CaesarCryptanalysis getCaesarCryptanalysis() {
+		CaesarCryptanalysis cc = new CaesarCryptanalysis();
+		return cc;
+	}
+	
+	public Distribution getDistribution(Alphabet source, String text, int ngramsize){
+		Distribution d = new Distribution(source, text, ngramsize);
+		return d;
+	}
+
+}

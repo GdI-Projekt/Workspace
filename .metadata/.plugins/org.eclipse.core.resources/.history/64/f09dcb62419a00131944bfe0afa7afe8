@@ -1,0 +1,60 @@
+package de.tudarmstadt.gdi1.project;
+
+import de.tudarmstadt.gdi1.project.Substitution;
+import de.tudarmstadt.gdi1.project.exception.InvalidAlphabetException;
+
+/**
+ * 
+ * @author Janik
+ *
+ */
+public class Polyalphabetic extends Substitution  implements de.tudarmstadt.gdi1.project.cipher.substitution.polyalphabetic.PolyalphabeticCipher {
+
+	Alphabet source;
+	Alphabet[] dest;
+	int alphabetcounter;
+	
+	/**
+	 * Konstruktor
+	 * @param source natürliche Alphabet
+	 * @param dest Array von Alphabeten, in die verschlüsselt wird
+	 */
+	public Polyalphabetic(Alphabet source, Alphabet[] dest){
+		try{
+			for(int i = 0; i<dest.length; i++){
+				if (!(source.size()==dest[i].size())) throw new InvalidAlphabetException();
+			}
+		}
+		catch(InvalidAlphabetException e){
+			System.out.println("Es haben nicht alle Alphabete die gleiche Länge!");
+		}
+		this.source = source;
+		this.dest = dest;
+	}
+	
+	/**
+	 * Anhand der Position des Characters im Text wird das dementsprechende Alphabet aus dest ausgewählt
+	 * @param chr der zu ersetzende Buchstabe
+	 * @param i die Position des Buchstaben im Text
+	 */
+	@Override
+	public char translate(char chr, int i) {
+		alphabetcounter = dest.length%i;
+		int index = source.getIndex(chr); // wirft Exception wenn Buchstabe nicht enthalten ist
+		return dest[alphabetcounter-1].getChar(index);
+	}
+
+	/**
+	 * Anhand der Position des Characters im Text wird das dementsprechende Alphabet aus dest ausgewählt
+	 * @param chr der zurück zu übersetzende Character
+	 * @param i die Position des Buchstaben im Text
+	 */
+	@Override
+	public char reverseTranslate(char chr, int i) {
+		alphabetcounter = dest.length%i;
+		int index = dest[alphabetcounter-1].getIndex(chr); //wirft Exception wenn Buchstabe nicht enthalten ist
+		return source.getChar(index);
+	}
+	
+
+}

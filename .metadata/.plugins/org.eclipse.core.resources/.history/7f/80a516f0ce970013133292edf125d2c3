@@ -1,0 +1,13 @@
+package de.tudarmstadt.gdi1.project.analysis;
+
+public class CaesarCryptanalysis implements de.tudarmstadt.gdi1.project.analysis.caesar.CaesarCryptanalysis {
+
+	@Override
+	public void knownCiphertextAttack(String s, Distribution d) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+}

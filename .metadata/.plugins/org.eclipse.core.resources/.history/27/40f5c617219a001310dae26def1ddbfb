@@ -1,0 +1,14 @@
+package de.tudarmstadt.gdi1.project.eigeneTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class CaesarChiffreTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

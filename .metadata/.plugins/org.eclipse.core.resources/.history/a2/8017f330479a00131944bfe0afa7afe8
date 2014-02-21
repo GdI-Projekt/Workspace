@@ -1,0 +1,17 @@
+package de.tudarmstadt.gdi1.project.eigeneTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+
+public class VigenereChiffreTest {
+	Alphabet abc = new Alphabet();
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

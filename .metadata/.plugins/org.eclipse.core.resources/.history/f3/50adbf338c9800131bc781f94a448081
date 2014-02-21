@@ -1,0 +1,27 @@
+package de.tudarmstadt.gdi1.project;
+
+/**
+ * Polyalphabetisches Verschlüsseln nach Vigenére.
+ * @author Laura
+ *
+ */
+public class Vigenere extends PolyalphabeticCipher {
+	
+	Alphabet source; //Ausgangsalphabet
+	Alphabet[] dest;
+	
+	/**
+	 * Erzeugt einen Vigenere.
+	 * @param key der Schlüssel (Keyword)
+	 * @param alphabet das Ausgangsalphabet
+	 */
+	public Vigenere(String key, Alphabet alphabet) {
+		super(alphabet, null);
+		
+		char[] keyArray = key.toCharArray();
+		
+		dest = new Alphabet[keyArray.length];
+	}
+	
+
+}

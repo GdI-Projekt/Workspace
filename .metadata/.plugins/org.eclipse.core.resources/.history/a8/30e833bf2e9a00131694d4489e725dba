@@ -1,0 +1,34 @@
+package de.tudarmstadt.gdi1.project;
+
+
+
+
+import de.tudarmstadt.gdi1.project.Alphabet; //shiftAlphabet ist in Alphabet implementiert
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.Caesar;
+
+/**
+ * 
+ * @author Stephanie, Laura, Thorsten
+ *
+ */
+public class CaesarChiffre extends Monoalphabetic implements Caesar {
+	static int key; //Zahl um die das Ausgangsalphabet verschoben werden soll
+	static Alphabet dest;
+	
+	public static Alphabet gibMirDest(Alphabet source) {
+		dest = (Alphabet) source.shiftAlphabet(source, key);
+		return dest;
+	}
+	/**
+	 * Konstruktor Caesar Chiffre
+	 * @param source Alphabet des Ausgangstextes
+	 * @param key Zahl um die das Alphabet Verschoben wird
+	 */
+	public CaesarChiffre(Alphabet source, int key) {
+		super(source, dest);
+		CaesarChiffre.key = key;
+	}
+
+	
+
+}

@@ -1,0 +1,29 @@
+package de.tudarmstadt.gdi1.project;
+import de.tudarmstadt.gdi1.project.alphabet.Dictionary;
+import de.tudarmstadt.gdi1.project.alphabet.Distribution;
+import de.tudarmstadt.gdi1.project.analysis.caeser.*;
+
+public class CaesarCryptanalysis implements de.tudarmstadt.gdi1.project.analysis.caeser.CaesarCryptanalysis  {
+
+	@Override
+	public Integer knownCiphertextAttack(String ciphertext,
+			Distribution distribution) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer knownCiphertextAttack(String ciphertext,
+			Dictionary dictionary) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer knownCiphertextAttack(String ciphertext,
+			Distribution distribution, Dictionary dict) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

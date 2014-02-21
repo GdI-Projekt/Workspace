@@ -1,0 +1,20 @@
+package de.tudarmstadt.gdi1.project;
+
+import de.tudarmstadt.gdi1.project.alphabet.Alphabet;
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.Monoalphabetic;
+import de.tudarmstadt.gdi1.project.analysis.*;
+
+public interface Factory {
+	
+	/**
+	 * gibt das Objekt Monoalphabetic zurück, welches einen Schlüssel und einen Text erhält
+	 * @param key Schlüssel mit dem Text ver- oder entschlüsselt wird
+	 * @param text Text der ver- oder entschlüsselt wird
+	 * @return Monoalphabetic 
+	 */
+	public Monoalphabetic getMonoalphabetic(Alphabet key, String text);
+	
+	public CaesarCryptanalysis getCaesarCryptanalysis();
+
+	
+}

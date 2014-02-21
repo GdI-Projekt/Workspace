@@ -1,0 +1,101 @@
+package de.tudarmstadt.gdi1.project;
+
+import java.util.*;
+
+/**
+ * 
+ * @author Janik
+ *
+ */
+
+public class DistributionC implements de.tudarmstadt.gdi1.project.alphabet.Distribution {
+	
+	String text;
+	Alphabet source;
+	/**
+	 * Konstruktor
+	 * @param source Die Liste der zu überprüfenden Buchstaben als Alphabet
+	 * @param text  der zu überprüfende Text
+	 * @param ngramsize
+	 */
+	public DistributionC(Alphabet source, String text, int ngramsize){
+
+		this.text = text;
+		this.source = source;
+		
+		this.getSorted(ngramsize);
+	}
+
+	/**
+	 * getFrequency zählt die Anzahl der Vorkommnisse eines Strings in einem Text
+	 * @param character der zu überprüfende String
+	 */
+	@Override
+	public double getFrequency(String key) {
+		int counter = 0;
+		for (int i=0; i <= text.length()-key.length(); i++){
+			if (text.substring(i,i+key.length()).equals(key)){
+				counter++;
+			}
+		}
+		return counter;
+	}
+
+	/**
+	 * getSorted sortiert alle in einem Text vorkommenden Strings der Länge length nach ihrer Häufigkeit.
+	 * @param length Länge der zu überprüfenden Zeichenketten
+	 */
+	@Override
+	public List<String> getSorted(int length) {
+		List<String[]> ergebnis = new ArrayList<String[]>();
+		List<String> result = new ArrayList<String>();
+		
+		for (int i = 0; i< text.length()-length; i++){
+			
+			String tempstring = text.substring(i,i+length);
+			
+			for(int e = 0 ; e < ergebnis.size(); e++){
+				String[] actergebnis = ergebnis.to
+				if (ergebnis.toArray()[e][2].equals(tempstring))
+					
+			}
+			
+
+			double frequency = getFrequency(tempstring);
+			
+			
+			if(!ergebnis.contains(new String[] {String.valueOf(frequency), tempstring})){
+				ergebnis.add(new String[] {String.valueOf(frequency), tempstring});
+			}
+			
+		}
+		while(ergebnis.size()>0){
+			double temp= 0;
+			for(int i = 0 ; i<ergebnis.size();i++){
+				
+				double wert = Double.valueOf(ergebnis.get(i)[0]);
+				
+				if(wert > temp){
+					temp=wert;
+					i=0;
+				}
+			}
+			result.add(ergebnis.get(0)[1]);
+			ergebnis.remove(0);
+		}
+		
+		return result;
+	}
+
+	public Alphabet getAlphabet(){
+		return source;
+	}
+
+	@Override
+	public String getByRank(int length, int rank) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

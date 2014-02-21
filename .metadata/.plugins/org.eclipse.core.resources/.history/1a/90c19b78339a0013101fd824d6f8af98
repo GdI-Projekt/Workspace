@@ -1,0 +1,34 @@
+package de.tudarmstadt.gdi1.project.eigeneTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+import de.tudarmstadt.gdi1.project.CaesarChiffre;
+
+public class CaesarChiffreTest {
+	Alphabet abc = new Alphabet();
+	CaesarChiffre c1 = new CaesarChiffre(abc, 3);
+	CaesarChiffre c2 = new CaesarChiffre(abc, 10);
+	
+	
+	@Test
+	public void testGibMirDest(){
+		assertEquals(CaesarChiffre.gibMirDest(abc), abc.shiftAlphabet(abc, 3);
+	}
+	@Test
+	public void testEncrypt() {
+		
+		assertEquals("d", c1.encrypt("a"));
+		assertEquals("jlwduuh", c1.encrypt("gitarre"));
+		assertEquals("oscoxlkrx", c2.encrypt("eisenbahn"));
+	}
+	
+	@Test
+	public void testDecrypt(){
+		assertEquals("fernseher", c1.decrypt("ihuqvhkhu"));
+		assertEquals("caesar", c2.decrypt("mkockb"));
+	}
+
+}

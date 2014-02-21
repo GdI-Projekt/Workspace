@@ -1,0 +1,26 @@
+package de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+import de.tudarmstadt.gdi1.project.utils.Utils;
+
+public class CaesarChiffre extends Monoalphabetic implements Caesar, Utils{
+
+	
+	
+	public CaesarChiffre(int key, String text) {
+		Alphabet normal = new Alphabet(); //normales Alphabet
+		char[] shifted = new char[26]; // Array in dem das verschobene Alphabet gespeichert wird
+		int k; // Verschiebung
+		for(int i=0; i<26; i++){
+			if(i+key > 26-k)
+				shifted[i]= normal.getChar(i-26-k);
+			else shifted[i]= normal.getChar(i+key);
+		}
+		
+		Alphabet alphabetKey= new Alphabet(shifted);
+		
+		super(alphabetKey, text);
+	}
+		
+
+}

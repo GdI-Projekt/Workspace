@@ -1,0 +1,12 @@
+package de.tudarmstadt.gdi1.project.cipher;
+/**
+ * Interface definiert zwei Methoden, encrypt und decrypt, die von Verschlüsselungsverfahren
+ * implementiert werden
+ * @author Stephi
+ *
+ */
+public interface Cipher {
+	public String encrypt(String text);
+	public String decrypt(String text);
+
+}

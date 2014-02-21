@@ -1,0 +1,71 @@
+package de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic;
+
+import java.util.List;
+import java.util.Map;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+import de.tudarmstadt.gdi1.project.utils.Utils;
+
+public class CaesarChiffre extends Monoalphabetic implements Caesar, Utils{
+	int key;
+	static Alphabet dest = (Alphabet) shiftAlphabet((de.tudarmstadt.gdi1.project.alphabet.Alphabet)source, key);
+	
+			/**
+	 * Methoden von Utils, die nicht gebraucht werden:
+	 */
+	@Override
+	public de.tudarmstadt.gdi1.project.alphabet.Alphabet reverseAlphabet(
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean containsSameCharacters(
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet1,
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public de.tudarmstadt.gdi1.project.alphabet.Alphabet randomizeAlphabet(
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	@Override
+	public de.tudarmstadt.gdi1.project.alphabet.Alphabet shiftAlphabet(
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet, int shift) {
+		Alphabet dest = new Alphabet();
+		
+		for(char e: alphabet){
+			if(i+key > 26-k)
+				shifted[i]= normal.getChar(i-26-k);
+			else shifted[i]= normal.getChar(i+key);
+		}
+		
+		
+	}
+	
+	public CaesarChiffre(Alphabet source, int key, Alphabet alphabet) {
+		super(alphabet, dest);
+		this.key = key;
+		
+		
+		
+		
+		
+		for(int i=0; i<26; i++){
+			if(i+key > 26-k)
+				shifted[i]= normal.getChar(i-26-k);
+			else shifted[i]= normal.getChar(i+key);
+		}
+		
+		Alphabet alphabetKey= new Alphabet(shifted);
+		
+		super(alphabetKey, text);
+	}
+	
+
+}

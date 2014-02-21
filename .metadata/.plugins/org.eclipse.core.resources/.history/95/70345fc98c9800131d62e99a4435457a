@@ -1,0 +1,184 @@
+package de.tudarmstadt.gdi1.project;
+
+import java.util.Collection;
+import java.util.List;
+
+import de.tudarmstadt.gdi1.project.Polyalphabetic;
+import de.tudarmstadt.gdi1.project.KeywordMonoalphabetic;
+import de.tudarmstadt.gdi1.project.CaesarChiffre;
+import de.tudarmstadt.gdi1.project.Monoalphabetic;
+import de.tudarmstadt.gdi1.project.alphabet.Alphabet;
+import de.tudarmstadt.gdi1.project.alphabet.Dictionary;
+import de.tudarmstadt.gdi1.project.alphabet.Distribution;
+import de.tudarmstadt.gdi1.project.analysis.ValidateDecryptionOracle;
+import de.tudarmstadt.gdi1.project.analysis.caeser.CaesarCryptanalysis;
+import de.tudarmstadt.gdi1.project.analysis.monoalphabetic.Individual;
+import de.tudarmstadt.gdi1.project.analysis.monoalphabetic.MonoalphabeticCpaNpaCryptanalysis;
+import de.tudarmstadt.gdi1.project.analysis.monoalphabetic.MonoalphabeticCribCryptanalysis;
+import de.tudarmstadt.gdi1.project.analysis.monoalphabetic.MonoalphabeticKnownCiphertextCryptanalysis;
+import de.tudarmstadt.gdi1.project.analysis.vigenere.VigenereCryptanalysis;
+import de.tudarmstadt.gdi1.project.cipher.enigma.Enigma;
+import de.tudarmstadt.gdi1.project.cipher.enigma.PinBoard;
+import de.tudarmstadt.gdi1.project.cipher.enigma.ReverseRotor;
+import de.tudarmstadt.gdi1.project.cipher.enigma.Rotor;
+import de.tudarmstadt.gdi1.project.cipher.substitution.SubstitutionCipher;
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.Caesar;
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.KeywordMonoalphabeticCipher;
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.MonoalphabeticCipher;
+import de.tudarmstadt.gdi1.project.cipher.substitution.polyalphabetic.PolyalphabeticCipher;
+import de.tudarmstadt.gdi1.project.cipher.substitution.polyalphabetic.Vigenere;
+import de.tudarmstadt.gdi1.project.utils.Utils;
+
+public class FactoryIM implements Factory {
+
+	@Override
+	public Distribution getDistributionInstance(Alphabet source, String text,
+			int ngramsize) {
+		Alphabet source1 = (de.tudarmstadt.gdi1.project.Alphabet)source;
+		de.tudarmstadt.gdi1.project.Distribution d = Distribution(source1, text, ngramsize);
+		return d;
+	}
+
+	@Override
+	public Alphabet getAlphabetInstance(Collection<Character> characters) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Dictionary getDictionaryInstance(Alphabet alphabet, String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MonoalphabeticCipher getMonoalphabeticCipherInstance(
+			Alphabet source, Alphabet dest) {
+		//source & dest Casten:
+		de.tudarmstadt.gdi1.project.Alphabet source1 = (de.tudarmstadt.gdi1.project.Alphabet)source;
+		de.tudarmstadt.gdi1.project.Alphabet dest1 = (de.tudarmstadt.gdi1.project.Alphabet) dest;
+		//Objekt vom Typ Monoalphabetic (Klasse nicht das Interface MonoalphabeticCipher)
+		Monoalphabetic m = new Monoalphabetic(dest1, source1);
+		//Gibt m gecastet zu MonoalphabeticCipher zurück
+		return (MonoalphabeticCipher) m;
+		
+	}
+
+	@Override
+	public Caesar getCaesarInstance(int key, Alphabet alphabet) {
+		de.tudarmstadt.gdi1.project.Alphabet alphabet1 = (de.tudarmstadt.gdi1.project.Alphabet) alphabet;
+		CaesarChiffre c = new CaesarChiffre(alphabet1, key);
+		
+		return (Caesar) c;
+	}
+
+	@Override
+	public KeywordMonoalphabeticCipher getKeywordMonoalphabeticCipherInstance(
+			String key, Alphabet alphabet) {
+		//alphabet nach Alphabet(passend zur Klasse) casten
+		de.tudarmstadt.gdi1.project.Alphabet alphabet1 = (de.tudarmstadt.gdi1.project.Alphabet) alphabet;
+		
+		KeywordMonoalphabetic k = new KeywordMonoalphabetic(alphabet1, key);
+		
+		return (KeywordMonoalphabeticCipher) k;
+	}
+
+	
+	
+
+	@Override
+	public Vigenere getVigenereCipherInstance(String key, Alphabet alphabet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CaesarCryptanalysis getCaesarCryptanalysisInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MonoalphabeticCpaNpaCryptanalysis getMonoalphabeticCpaNpaCryptanalysis() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MonoalphabeticCribCryptanalysis getMonoalphabeticCribCryptanalysisInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MonoalphabeticKnownCiphertextCryptanalysis getMonoalphabeticKnownCiphertextCryptanalysisInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public VigenereCryptanalysis getVigenereCryptanalysisInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Utils getUtilsInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Enigma getEnigmaInstance(List<Rotor> rotors, PinBoard pinboard,
+			ReverseRotor reverseRotor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PinBoard getPinBoardInstance(Alphabet source, Alphabet destination) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rotor getRotorInstance(Alphabet entryAlph, Alphabet exitAlph,
+			int startPosition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReverseRotor getReverseRotatorInstance(Alphabet entryAlph,
+			Alphabet exitAlph) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Class<? extends SubstitutionCipher> getAbstractSubstitutionCipherClass() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ValidateDecryptionOracle getValidateDecryptionOracle(
+			Distribution distribution, Dictionary dictionary) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Individual getIndividualInstance(Alphabet alphabet, double fitness) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PolyalphabeticCipher getPolyalphabeticCipherInstance(
+			Alphabet source, Alphabet[] dest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

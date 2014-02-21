@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.analysis.Distribution"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.cipher.substitution.Substitution"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.Monoalphabetic"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.utils.Utils"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.analysis.monoalphabetic.MonoalphabeticCpaNpaCryptanalysis"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.analysis.monoalphabetic.MonoalphabeticCribCryptanalysis"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.analysis.monoalphabetic.BacktrackingAnalysis"/>
+</qualifiedTypeNameHistroy>

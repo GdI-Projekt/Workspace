@@ -1,0 +1,13 @@
+package de.tudarmstadt.gdi1.project;
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.*;
+
+public class KeywordMonoalphabeticCipher extends Monoalphabetic {
+
+	Alphabet source; //ausgehendes Alphabet
+	Alphabet key; //Alphabet, in das verschlüsselt wird
+	
+	public KeywordMonoalphabeticCipher(Alphabet source, Alphabet key) {
+		super(source, key);
+	}
+	
+}

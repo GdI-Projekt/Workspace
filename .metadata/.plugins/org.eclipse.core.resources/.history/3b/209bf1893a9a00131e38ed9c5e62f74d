@@ -1,0 +1,35 @@
+package de.tudarmstadt.gdi1.project.eigeneTests;
+
+import static org.junit.Assert.*;
+
+import java.util.Arrays;
+
+import org.junit.Test;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+import de.tudarmstadt.gdi1.project.Polyalphabetic;
+
+public class PolyalphabeticTest {
+
+	Alphabet source = new Alphabet(Arrays.asList('a', 'b', 'c', 'd', 'e'));
+	
+	Alphabet dest1 = new Alphabet(Arrays.asList('w', 'q', 'r', 'z', 'e'));
+	Alphabet dest2 = new Alphabet(Arrays.asList('1', '2', '3', '4', '5'));
+	Alphabet dest3 = new Alphabet(Arrays.asList('q', 'w', 'e', 'r', 't'));
+	Alphabet[] dest = {dest1, dest2, dest3};
+
+	Polyalphabetic p = new Polyalphabetic(source, dest);
+	
+	@Test
+	public void testTranslate() {
+		assertEquals('5', p.translate('e', 14));
+		assertEquals('q', p.translate('a', 3));
+		assertEquals('r', p.translate('c', 7));
+	}
+
+	@Test
+	public void testReverseTranslate(){
+		assertEquals('e', p.reverseTranslate('5', 8));
+		assertEquals('b', p.reverseTranslate('q', 4));
+	}
+}

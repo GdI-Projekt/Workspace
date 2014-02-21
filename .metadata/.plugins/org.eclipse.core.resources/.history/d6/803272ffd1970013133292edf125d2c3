@@ -1,0 +1,24 @@
+package de.tudarmstadt.gdi1.project.analysis;
+
+/**
+ * Entschlüsselung eines mit Cäsar verschlüsselten Textes
+ * @author Laura
+ *
+ */
+
+public class CaesarCryptanalysis implements de.tudarmstadt.gdi1.project.analysis.caesar.CaesarCryptanalysis {
+
+	/**
+	 * @param cipher der bekannte Ciphertext
+	 * @param d Distribution
+	 */
+	@Override
+	public void knownCiphertextAttack(String cipher, Distribution d) {
+		
+		String mostFrequently = d.getSorted(1).get(0);
+		
+	}
+	
+	
+
+}

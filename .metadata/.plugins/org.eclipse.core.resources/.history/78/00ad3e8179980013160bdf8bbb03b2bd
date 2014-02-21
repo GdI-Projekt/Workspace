@@ -1,0 +1,6 @@
+package de.tudarmstadt.gdi1.project;
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.*;
+
+public class KeywordMonoAlphabeticCipher extends Monoalphabetic {
+
+}

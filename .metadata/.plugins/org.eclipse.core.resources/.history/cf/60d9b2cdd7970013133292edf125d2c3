@@ -1,0 +1,43 @@
+package de.tudarmstadt.gdi1.project.analysis;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+
+/**
+ * Entschlüsselung eines mit Cäsar verschlüsselten Textes
+ * @author Laura
+ *
+ */
+
+
+public class CaesarCryptanalysis implements de.tudarmstadt.gdi1.project.analysis.caesar.CaesarCryptanalysis {
+
+	int key;
+	
+	/**
+	 * Ermittelt aufgrund von Häufigkeiten von Buchstaben in Alphabet und Ciphertext den 
+	 * (wahrscheinlich) verwendeten Schlüssel für die Cäsar-Verschlüsselung.
+	 * @param cipher der bekannte Ciphertext
+	 * @param d Distribution
+	 */
+	@Override
+	public void knownCiphertextAttack(String cipher, Distribution d) {
+		
+		//häufigster Buchstabe in der gegebenen Distribution
+		char mostFrequently = d.getSorted(1).get(0).toCharArray()[0];
+		
+		Alphabet alph = d.getAlphabet();
+		
+		Distribution cipherDis = new Distribution(alph, cipher, 0);
+		//Ermittlung des häufigsten Buchstaben im Ciphertext
+		char mostFrequentlyInCipher = cipherDis.getSorted(1).get(0).toCharArray()[0];
+		
+		//Ermittlung des Schlüssels nach am häufigsten vorkommenden Buchstaben
+		if (alph.getIndex(mostFrequently) >= alph.getIndex(mostFrequentlyInCipher)) 
+			key = alph.getIndex(mostFrequently) - alph.getIndex(mostFrequentlyInCipher);
+		else key = alph.getIndex(mostFrequentlyInCipher) - alph.getIndex(mostFrequently);
+		
+	}
+	
+	
+
+}

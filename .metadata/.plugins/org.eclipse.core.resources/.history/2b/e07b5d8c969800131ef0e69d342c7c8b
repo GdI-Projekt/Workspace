@@ -1,0 +1,79 @@
+package de.tudarmstadt.gdi1.project;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import de.tudarmstadt.gdi1.project.alphabet.Alphabet;
+import de.tudarmstadt.gdi1.project.alphabet.Dictionary;
+import de.tudarmstadt.gdi1.project.alphabet.Distribution;
+import de.tudarmstadt.gdi1.project.analysis.ValidateDecryptionOracle;
+
+/**
+ * Repräsentiert einen Angreifer, der nur den Chiffrétext vor sich liegen hat und 
+ * unterstützt wird von Cribs (=bekannte Wörter im Plaintext).
+ * @author Laura
+ *
+ */
+public class MonoAlphabeticBackTrackingWCAnalysis implements 
+de.tudarmstadt.gdi1.project.analysis.monoalphabetic.MonoalphabeticCribCryptanalysis, 
+de.tudarmstadt.gdi1.project.analysis.monoalphabetic.BacktrackingAnalysis {
+
+	@Override
+	public Map<Character, Character> reconstructKey(
+			Map<Character, Character> key, String ciphertext,
+			Alphabet alphabet, Distribution distribution,
+			Dictionary dictionary, List<String> cribs,
+			ValidateDecryptionOracle validateDecryptionOracle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Character> getPotentialAssignments(
+			Character targetCharacter, Map<Character, Character> key,
+			String ciphertext, Alphabet alphabet, Distribution distribution,
+			Dictionary dictionary) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Character getNextSourceChar(Map<Character, Character> key,
+			Alphabet alphabet, Distribution distribution,
+			Dictionary dictionary, List<String> cribs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isPromisingPath(Alphabet alphabet, String ciphertext,
+			Map<Character, Character> key, Distribution distribution,
+			Dictionary dictionary, Collection<String> cribs) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public char[] knownCiphertextAttack(String ciphertext,
+			Distribution distribution, Dictionary dictionary, List<String> cribs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public char[] knownCiphertextAttack(String ciphertext,
+			Distribution distribution, Dictionary dictionary,
+			List<String> cribs,
+			ValidateDecryptionOracle validateDecryptionOracle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getState(Alphabet sourceAlphabet, Alphabet targetKey) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

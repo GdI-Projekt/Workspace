@@ -1,0 +1,13 @@
+package de.tudarmstadt.gdi1.project.cipher.substitution;
+
+import de.tudarmstadt.gdi1.project.cipher.Cipher;
+/**
+ * Erweitert das Cipher Interface um Methoden die Buchstaben an einer bestimmten Position übersetzen
+ * bwz zurück übersetzen
+ * @author Stephi, Thorsten
+ *
+ */
+public interface SubstitutionCipher extends Cipher{
+	public char translate(int pos);
+	public char reverseTranslate(int pos);
+}

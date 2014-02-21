@@ -1,0 +1,44 @@
+package de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+import de.tudarmstadt.gdi1.project.cipher.substitution.Substitution;
+
+/**
+ * Monoalphabetic implementiert MonoalphabeticCipher und erbt von Substitution
+ * die Methoden translate und reverseTranslate werden passend für eine Monoalphabetische Substitution
+ * implementiert
+ * @author Stephi
+ *
+ */
+public class Monoalphabetic extends Substitution implements MonoalphabeticCipher {
+
+	Alphabet normalAlphabet = new Alphabet();
+	Alphabet key;
+	
+	/**
+	 * (Die Position des Buchstaben im Text spielt keine Rolle)
+	 */
+	@Override
+	public char translate(char chr, int i) {
+		int index = normalAlphabet.getIndex(chr); // wirft Exception wenn Buchstabe nicht enthalten ist
+		return key.getChar(index);
+	}
+	
+	/**
+	 * (Die Position des Buchstaben im Text spielt keine Rolle)
+	 */
+	@Override
+	public char reverseTranslate(char chr, int i) {
+		int index = key.getIndex(chr); //wirft Exception wenn Buchstabe nicht enthalten ist
+		return normalAlphabet.getChar(index);
+	}
+	
+	/**
+	 * Konstruktor
+	 * @param key Alphabet, das 26 Zeichen besitzt wobei keins doppelt vorkommen darf
+	 */
+	public Monoalphabetic(Alphabet key){
+		this.key = key;
+	}
+	//--> Exception: länge von key > oder > 26 oder Zeichen kommt doppelt vor
+}

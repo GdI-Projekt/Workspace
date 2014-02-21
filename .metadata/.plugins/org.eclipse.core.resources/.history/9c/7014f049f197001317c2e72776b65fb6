@@ -1,0 +1,13 @@
+package de.tudarmstadt.gdi1.project.alphabet;
+
+/**
+ * Repräsentiert ein Alphabet mitsamt Methoden.
+ * @author Laura
+ *
+ */
+public interface Alphabet {
+	
+	public void createAlphabet(char[] alphabet);
+	public boolean checkAlphabet(char[] alphabet);
+	
+}

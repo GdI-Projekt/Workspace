@@ -1,0 +1,7 @@
+package de.tudarmstadt.gdi1.project.analysis;
+
+public interface KnownCiphertextAnalysis {
+	
+	public int knownCiphertextAttack(String cipher, Distribution d);
+
+}

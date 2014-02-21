@@ -1,0 +1,25 @@
+package de.tudarmstadt.gdi1.project;
+
+import de.tudarmstadt.gdi1.project.cipher.substitution.Substitution;
+
+public class PolyalphabeticCipher extends Substitution  implements de.tudarmstadt.gdi1.project.cipher.substitution.polyalphabetic.PolyalphabeticCipher {
+
+	public PolyalphabeticCipher(Alphabet source, Alphabet dest){
+		
+	}
+	
+	
+	@Override
+	public char translate(char chr, int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public char reverseTranslate(char chr, int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+
+}

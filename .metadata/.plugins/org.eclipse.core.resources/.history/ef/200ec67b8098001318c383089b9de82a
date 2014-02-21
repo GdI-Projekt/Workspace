@@ -1,0 +1,69 @@
+package de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic;
+
+import java.util.List;
+import java.util.Map;
+
+import de.tudarmstadt.gdi1.project.Alphabet;
+import de.tudarmstadt.gdi1.project.utils.Utils;
+
+public class CaesarChiffre extends Monoalphabetic implements Caesar, Utils{
+	int key; //Zahl um die das Ausgangsalphabet verschoben werden soll
+	static Alphabet dest = (Alphabet) shiftAlphabet((de.tudarmstadt.gdi1.project.alphabet.Alphabet)source, key);
+	
+	//Methoden von Utils die nicht gebraucht werden:
+	@Override
+	public String toDisplay(String ciphertext) {
+		return null;
+	}
+	@Override
+	public Map<Integer, List<String>> ngramize(String text, int... lengths) {
+		return null;
+	}
+	@Override
+	public de.tudarmstadt.gdi1.project.alphabet.Alphabet reverseAlphabet(
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet) {
+		return null;
+	}
+	@Override
+	public boolean containsSameCharacters(
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet1,
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet2) {
+		return false;
+	}
+	@Override
+	public de.tudarmstadt.gdi1.project.alphabet.Alphabet randomizeAlphabet(
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet) {
+		return null;
+	}
+	
+	/**
+	 * Erhält ein Alphabet und die Zahl um die das Alphabet verschoben werden soll
+	 * @param alphabet Alphabet des Ausgangstextes
+	 * @param shift Zahl um die das Ausgangsalphabet verschoben werden kann
+	 * 
+	 */
+	@Override
+	public de.tudarmstadt.gdi1.project.alphabet.Alphabet shiftAlphabet(
+			de.tudarmstadt.gdi1.project.alphabet.Alphabet alphabet, int shift) {
+		Alphabet dest = new Alphabet(); // neue Alphabet, in das vershlüsselt wird
+		int count = 0; //Index-Zähler
+		for(char e: alphabet){  //Iteriert durch das Alphabet und verschiebt es um den wert von key
+			if(count+key > alphabet.size()) // wenn Zähler + Verschiebung größer als die Länge des Alphabets ist 
+				dest.addChar(alphabet.getChar(count-alphabet.size()-key)); //muss es wieder von vorne wetergehen.
+			else dest.addChar(alphabet.getChar(count+key)); //1. Buchstabe in dest = (1+key)ter Buchstabe in alphabet
+		}
+		return dest;
+	}
+	/**
+	 * Konstruktor Caesar Chiffre
+	 * @param source Alphabet des Ausgangstextes
+	 * @param key Zahl um die das Alphabet Verschoben wird
+	 */
+	public CaesarChiffre(Alphabet source, int key) {
+		super(source, dest);
+		this.key = key;
+	}
+
+	
+
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.analysis.Distribution"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.cipher.substitution.Substitution"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.Monoalphabetic"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.utils.Utils"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.alphabet.Dictionary"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.Monoalphabetic"/>
+<fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.exception.InvalidAlphabetException"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.Polyalphabetic"/>
+<fullyQualifiedTypeName name="de.tudarmstadt.gdi1.project.Alphabet"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+</qualifiedTypeNameHistroy>

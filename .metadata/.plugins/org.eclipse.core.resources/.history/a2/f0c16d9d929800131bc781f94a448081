@@ -1,0 +1,84 @@
+package de.tudarmstadt.gdi1.project;
+
+import de.tudarmstadt.gdi1.project.alphabet.Alphabet;
+import de.tudarmstadt.gdi1.project.alphabet.Dictionary;
+import de.tudarmstadt.gdi1.project.alphabet.Distribution;
+import de.tudarmstadt.gdi1.project.analysis.EncryptionOracle;
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.MonoalphabeticCipher;
+import de.tudarmstadt.gdi1.project.exception.*;
+
+/**
+ * Repräsentiert einen Angreifer auf eine monoalphabetische Verschlüsselung, wobei der 
+ * Angreifer sowohl Klar- als auch Chiffretext besitzt und sich sogar beliebige Klar- und
+ * dazugehörige Chiffretexte aussuchen darf.
+ * @author Laura
+ *
+ */
+public class MonoalphabeticCpaNpaCryptanalysis implements
+de.tudarmstadt.gdi1.project.analysis.monoalphabetic.MonoalphabeticCpaNpaCryptanalysis {
+
+	//Verweist auf knownPlaintextAttack(String ciphertext, String plaintext, Alphabet alphabet)
+	@Override
+	public Object knownPlaintextAttack(String ciphertext, String plaintext,
+			Distribution distribution) {
+		return knownPlaintextAttack(ciphertext, plaintext, distribution.getAlphabet());
+	}
+
+	//Verweist auf knownPlaintextAttack(String ciphertext, String plaintext, Alphabet alphabet)
+	@Override
+	public Object knownPlaintextAttack(String ciphertext, String plaintext,
+			Distribution distribution, Dictionary dictionary) {
+		return knownPlaintextAttack(ciphertext, plaintext, dictionary.getAlphabet());
+	}
+
+	/**
+	 * Ermittelt aus einem Klartext und dem jeweiligen Chiffrétext den benutzten 
+	 * Schlüssel. Falls aus mangelnder Länge nicht der gesamte Schlüssel ermittelbar ist, 
+	 * werden die unbekannten Stellen mit Leerzeichen ausgefüllt.
+	 * @param ciphertext der verschlüsselte Text
+	 * @param plaintext der Klartext
+	 * @param alphabet das benutzte Alphabet
+	 * @return der ermittelte Schlüssel (evtl. nicht vollständig)
+	 */
+	@Override
+	public char[] knownPlaintextAttack(String ciphertext, String plaintext,
+			Alphabet alphabet) {
+
+		
+		char[] key = new char[alphabet.size()];
+		char[] cipherArray = ciphertext.toCharArray();
+		char[] plainArray = plaintext.toCharArray();
+		
+		try {
+			//falls Klar- und Chiffrétext nicht die gleiche Länge besitzen, wird eine 
+			//Exceptio geworfen
+			if (cipherArray.length != plainArray.length) throw new InvalidTextException();
+		}
+		catch(InvalidTextException ie) {
+			System.out.println("Die eingegebenen Texte besitzen nicht die gleiche Länge!");
+		}
+		
+		for (int i = 0; i < key.length; i++) {
+			key[i] = ' '; //füllt das Ergebnisarray mit Leerzeichen auf
+		}
+		
+		for (int i = 0; i < cipherArray.length; i++) {
+			int plainIndex = alphabet.getIndex(plainArray[i]);
+			int cipherIndex = alphabet.getIndex(cipherArray[i]);
+			int keyIndex;
+			if (plainIndex < cipherIndex) keyIndex = cipherIndex - plainIndex;
+			else keyIndex = plainIndex - cipherIndex;
+			key[plainIndex] = alphabet.getChar(keyIndex);
+		}
+		
+		return key;
+	}
+
+	@Override
+	public char[] chosenPlaintextAttack(
+			EncryptionOracle<MonoalphabeticCipher> oracle, Alphabet alphabet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

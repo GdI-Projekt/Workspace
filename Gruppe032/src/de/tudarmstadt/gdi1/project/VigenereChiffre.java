@@ -1,0 +1,35 @@
+package de.tudarmstadt.gdi1.project;
+
+/**
+ * Polyalphabetisches Verschlüsseln nach Vigenére.
+ * @author Laura
+ *
+ */
+public class VigenereChiffre extends Polyalphabetic {
+	
+	Alphabet source; //Ausgangsalphabet
+	Alphabet[] dest; //Schlüsselalphabet-Array, welches im Konstruktor abhängig vom Keyword 
+	//aufgebaut wird
+	
+	/**
+	 * Erzeugt einen Vigenere.
+	 * @param key der Schlüssel (Keyword)
+	 * @param alphabet das Ausgangsalphabet
+	 */
+	public VigenereChiffre(String key, Alphabet alphabet) {
+		super(alphabet, (Alphabet[])null);
+		
+		char[] keyArray = key.toCharArray();
+		
+		dest = new Alphabet[keyArray.length];
+		
+		//Erstellung des dest-Arrays abhängig von den Buchstaben im Keyword:
+		for (int i = 0; i < keyArray.length; i++) {
+			int index = source.getIndex(keyArray[i]);
+			Alphabet shiftedAlph = (Alphabet) source.shiftAlphabet(source, index);
+			dest[i] = shiftedAlph;
+		}
+	}
+	
+
+}

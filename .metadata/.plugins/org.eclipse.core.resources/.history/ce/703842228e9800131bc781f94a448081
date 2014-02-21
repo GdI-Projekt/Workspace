@@ -1,0 +1,47 @@
+package de.tudarmstadt.gdi1.project;
+
+import de.tudarmstadt.gdi1.project.alphabet.Alphabet;
+import de.tudarmstadt.gdi1.project.alphabet.Dictionary;
+import de.tudarmstadt.gdi1.project.alphabet.Distribution;
+import de.tudarmstadt.gdi1.project.analysis.EncryptionOracle;
+import de.tudarmstadt.gdi1.project.cipher.substitution.monoalphabetic.MonoalphabeticCipher;
+
+/**
+ * Repräsentiert einen Angreifer auf eine monoalphabetische Verschlüsselung, wobei der 
+ * Angreifer sowohl Klar- als auch Chiffretext besitzt und sich sogar beliebige Klar- und
+ * dazugehörige Chiffretexte aussuchen darf.
+ * @author Laura
+ *
+ */
+public class MonoalphabeticCpaNpaCryptanalysis implements
+de.tudarmstadt.gdi1.project.analysis.monoalphabetic.MonoalphabeticCpaNpaCryptanalysis {
+
+	@Override
+	public Object knownPlaintextAttack(String ciphertext, String plaintext,
+			Distribution distribution) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object knownPlaintextAttack(String ciphertext, String plaintext,
+			Distribution distribution, Dictionary dictionary) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public char[] knownPlaintextAttack(String ciphertext, String plaintext,
+			Alphabet alphabet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public char[] chosenPlaintextAttack(
+			EncryptionOracle<MonoalphabeticCipher> oracle, Alphabet alphabet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
